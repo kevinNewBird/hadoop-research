@@ -19,7 +19,7 @@ public final class HdfsConstant {
         if (StringUtils.containsIgnoreCase(os, "windows")) {
             NAMENODE_CLIENT = "hdfs://172.22.124.60:8020/";
         } else {
-            NAMENODE_CLIENT = "hdfs://";
+            NAMENODE_CLIENT = "hdfs://10.211.55.13:8020/";
         }
     }
 }
