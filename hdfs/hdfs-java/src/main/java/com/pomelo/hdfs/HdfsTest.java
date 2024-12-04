@@ -2,13 +2,15 @@ package com.pomelo.hdfs;
 
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileStatus;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.Objects;
 
@@ -23,6 +25,8 @@ import static com.pomelo.hdfs.constant.HdfsConstant.NAMENODE_CLIENT;
  * version: 1.0
  */
 public class HdfsTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(HdfsTest.class);
 
     private static FileSystem fs = null;
 
@@ -81,6 +85,7 @@ public class HdfsTest {
 
     /**
      * 写入文件数据到hdfs
+     *
      * @throws IOException
      */
     @Test
@@ -95,5 +100,86 @@ public class HdfsTest {
 
         fs.copyFromLocalFile(false, true, localFile, remoteFile);
         System.out.println("写入hdfs成功!!!");
+    }
+
+    /**
+     * description: hdfs文件重命名
+     * create by: zhaosong 2024/12/4 17:20
+     *
+     * @throws IOException
+     */
+    @Test
+    public void renameHdfsFile() throws IOException {
+        Path hdfsOldFile = new Path("/dir1/Readme.md");
+        if (!fs.exists(hdfsOldFile)) {
+            logger.warn("file[{}] not exists!", hdfsOldFile.getName());
+            return;
+        }
+
+        Path hdfsNewFile = new Path("/dir1/Readme2.md");
+        logger.info("file[{}] rename to  {}!", hdfsOldFile.getName(), hdfsNewFile.getName());
+        fs.rename(hdfsOldFile, hdfsNewFile);
+    }
+
+    /**
+     * description: 获取 hdfs文件或目录 的详细信息
+     * create by: zhaosong 2024/12/4 17:21
+     */
+    @Test
+    public void detailFromHdfsFile() throws IOException {
+        Path filePath = new Path("/dir1/");
+        if (!fs.exists(filePath)) {
+            logger.warn("file[{}] not exists!", filePath.getName());
+            return;
+        }
+
+        RemoteIterator<LocatedFileStatus> iterator = fs.listFiles(filePath, true);
+        while (iterator.hasNext()) {
+            LocatedFileStatus fileStatus = iterator.next();
+            // 文件的详细信息
+            System.out.println("文件详细信息如下：");
+            System.out.println("文件路径：" + fileStatus.getPath());
+            System.out.println("权限：" + fileStatus.getPermission());
+            System.out.println("所有者：" + fileStatus.getOwner());
+            System.out.println("所有者组：" + fileStatus.getGroup());
+            System.out.println("大小：" + fileStatus.getLen());
+            System.out.println("块大小：" + fileStatus.getBlockSize());
+        }
+    }
+
+    /**
+     * description:读取hdfs文件的内容
+     * create by: zhaosong 2024/12/4 17:31
+     */
+    @Test
+    public void readFromHdfsFile() throws IOException {
+        Path hdfsFile = new Path("/dir1/Readme2.md");
+        if (!fs.exists(hdfsFile)) {
+            logger.warn("file[{}] not exists!", hdfsFile.getName());
+            return;
+        }
+        try (FSDataInputStream fds = fs.open(hdfsFile);
+             BufferedReader br = new BufferedReader(new InputStreamReader(fds))) {
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        }
+    }
+
+    /**
+     * description: 删除文件或目录
+     * create by: zhaosong 2024/12/4 17:36
+     */
+    @Test
+    public void deleteHdfsFileOrDirectory() throws IOException {
+        Path hdfsFile = new Path("/dir1/");
+        if (!fs.exists(hdfsFile)) {
+            logger.warn("file or directory [{}] not exists!", hdfsFile.getName());
+            return;
+        }
+        // 递归删除
+        boolean success = fs.delete(hdfsFile, true);
+        System.out.println(success ? "delete success" : "failed to delete");
     }
 }
