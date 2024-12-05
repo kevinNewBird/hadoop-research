@@ -24,18 +24,20 @@ import static com.pomelo.hdfs.constant.HdfsConstant.NAMENODE_CLIENT;
  * create by: zhaosong 2024/12/3
  * version: 1.0
  */
-public class HdfsTest {
+public abstract class BaseHdfsTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(HdfsTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(BaseHdfsTest.class);
 
     private static FileSystem fs = null;
+
+    protected abstract String url();
 
     @Before
     public void prepare() throws IOException, InterruptedException {
         // 1.创建conf对象
         Configuration conf = new Configuration(true);
         // 2.创建FileSystem对象
-        fs = FileSystem.get(URI.create(NAMENODE_CLIENT), conf, HADOOP_USER);
+        fs = FileSystem.get(URI.create(url()), conf, HADOOP_USER);
     }
 
     /**
@@ -90,7 +92,7 @@ public class HdfsTest {
      */
     @Test
     public void writeFileToHdfs() throws IOException {
-        Path localFile = new Path(Objects.requireNonNull(HdfsTest.class.getClassLoader()
+        Path localFile = new Path(Objects.requireNonNull(BaseHdfsTest.class.getClassLoader()
                 .getResource("Readme.md")).getFile().toString());
 
         Path remoteFile = new Path("/dir1/Readme.md");
