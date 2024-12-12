@@ -9,6 +9,7 @@
     <modules>
         <module>hdfs</module>
         <module>common-base</module>
+        <module>mapreduce</module>
     </modules>
 
     <parent>
