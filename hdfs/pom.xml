@@ -16,9 +16,6 @@
         <module>hdfs-java</module>
     </modules>
 
-    <properties>
-        <hadoop.version>3.3.6</hadoop.version>
-    </properties>
 
     <dependencyManagement>
         <dependencies>
