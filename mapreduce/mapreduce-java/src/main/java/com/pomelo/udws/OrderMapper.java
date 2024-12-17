@@ -14,13 +14,13 @@ import java.io.IOException;
  * create by: zhaosong 2024/12/17
  * version: 1.0
  */
-public class OrderMapper extends Mapper<LongWritable, Text, OrderWritable, NullWritable> {
+public class OrderMapper extends Mapper<LongWritable, Text, OrderWritable, OrderWritable> {
 
     OrderWritable outputKey = new OrderWritable();
 
     @Override
     protected void map(LongWritable key, Text value
-            , Mapper<LongWritable, Text, OrderWritable, NullWritable>.Context context) throws IOException, InterruptedException {
+            , Mapper<LongWritable, Text, OrderWritable, OrderWritable>.Context context) throws IOException, InterruptedException {
         // 行数据：1001	2024-03-10	商品A	2	100
         String line = value.toString();
 
@@ -32,6 +32,6 @@ public class OrderMapper extends Mapper<LongWritable, Text, OrderWritable, NullW
         outputKey.setAmount(Double.valueOf(words[4]));
 
         // 写出数据
-        context.write(outputKey, NullWritable.get());
+        context.write(outputKey, outputKey);
     }
 }

@@ -31,7 +31,7 @@ public class OrderDriver {
 
         // 4.设置mapper输出的K,V类型
         job.setMapOutputKeyClass(OrderWritable.class);
-        job.setMapOutputValueClass(NullWritable.class);
+        job.setMapOutputValueClass(OrderWritable.class);
 
         // 5.设置最终输出数据的K,V类型
         job.setOutputKeyClass(OrderWritable.class);

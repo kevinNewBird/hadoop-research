@@ -12,14 +12,14 @@ import java.io.IOException;
  * create by: zhaosong 2024/12/17
  * version: 1.0
  */
-public class OrderReducer extends Reducer<OrderWritable, NullWritable, OrderWritable, NullWritable> {
+public class OrderReducer extends Reducer<OrderWritable, OrderWritable, OrderWritable, NullWritable> {
 
 
     @Override
-    protected void reduce(OrderWritable key, Iterable<NullWritable> values
-            , Reducer<OrderWritable, NullWritable, OrderWritable, NullWritable>.Context context) throws IOException, InterruptedException {
+    protected void reduce(OrderWritable key, Iterable<OrderWritable> values
+            , Reducer<OrderWritable, OrderWritable, OrderWritable, NullWritable>.Context context) throws IOException, InterruptedException {
         // 必须循环写出数据，可能存在相同的商品购买金额数据，从而被覆盖
-        for (NullWritable value : values) {
+        for (OrderWritable value : values) {
             // 写出数据（因为商品没有重复，暂不涉及分组）
             context.write(key, NullWritable.get());
         }
