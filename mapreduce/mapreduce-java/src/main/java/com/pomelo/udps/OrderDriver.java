@@ -1,6 +1,7 @@
-package com.pomelo.udws;
+package com.pomelo.udps;
 
-import com.pomelo.udws.writable.OrderWritable;
+import com.pomelo.udps.partitioner.OrderPartitioner;
+import com.pomelo.udps.writable.OrderWritable;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
@@ -37,11 +38,15 @@ public class OrderDriver {
         job.setOutputKeyClass(OrderWritable.class);
         job.setOutputValueClass(NullWritable.class);
 
-        // 6.设置数据输入和输出的路径
+        // 6.设置分区器
+        job.setPartitionerClass(OrderPartitioner.class);
+        job.setNumReduceTasks(3);
+
+        // 7.设置数据输入和输出的路径
         FileInputFormat.setInputPaths(job, new Path("data/order.txt"));
         FileOutputFormat.setOutputPath(job, new Path("data/output"));
 
-        // 7.运行任务
+        // 8.运行任务
         boolean success = job.waitForCompletion(true); // true表示打印中间的结果，false表示不打印中间的结果
         System.out.println(success ? "任务执行成功...." : "任务执行失败！！！");
     }
