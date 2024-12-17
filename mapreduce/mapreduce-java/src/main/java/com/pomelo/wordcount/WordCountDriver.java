@@ -41,6 +41,9 @@ public class WordCountDriver {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
+        // 设置分区数（默认为1.即设置reduce的分区数量，提高并发数）
+        job.setNumReduceTasks(2); // 最终会有两个文件输出
+
         // 6.设置数据输入和输出的路径
         FileInputFormat.setInputPaths(job, new Path("data/data.txt"));
         FileOutputFormat.setOutputPath(job, new Path("data/output"));
