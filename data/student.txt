@@ -1,0 +1,6 @@
+zhangsan,20
+lisi,50
+wangwu,90
+maliu,72
+tiaqi,56
+gaoba,88
