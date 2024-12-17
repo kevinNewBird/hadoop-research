@@ -1,5 +1,5 @@
 # 说明
-join操作。<br/>
+join操作，注意其是在reduce阶段做的join。这个过程涉及到数据的Shuffle，与之对应的还有map阶段的join，其效率要更高<br/>
 person.txt 记录了用户的基本信息：
 
 ```

@@ -21,7 +21,7 @@ public class StaffReducer extends Reducer<StaffWritable, StaffWritable, StaffWri
     protected void reduce(StaffWritable key, Iterable<StaffWritable> values
             , Reducer<StaffWritable, StaffWritable, StaffWritable, NullWritable>.Context context) throws IOException, InterruptedException {
         //  tip: 相同id的数据存储在values迭代器里面
-        // why?  推测和比较器有关
+        // （！！！）why?  key是否相同，普通类型主要是依据值是否相等，而对象则是和比较器WritableComparable的compareTo方法有关
         String address = "";
         List<StaffWritable> dataList = new ArrayList<>();
         for (StaffWritable value : values) {
