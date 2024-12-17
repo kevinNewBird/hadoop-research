@@ -1,6 +1,6 @@
 package com.pomelo.formatter.format;
 
-import com.pomelo.formatter.writable.StudentWritable;
+import com.pomelo.formatter.writable.ScoreWritable;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -18,10 +18,10 @@ import java.io.IOException;
  * create by: zhaosong 2024/12/17
  * version: 1.0
  */
-public class StudentOutputFormat extends FileOutputFormat<StudentWritable, NullWritable> {
+public class ScoreOutputFormat extends FileOutputFormat<ScoreWritable, NullWritable> {
 
     @Override
-    public RecordWriter<StudentWritable, NullWritable> getRecordWriter(TaskAttemptContext context) throws IOException, InterruptedException {
+    public RecordWriter<ScoreWritable, NullWritable> getRecordWriter(TaskAttemptContext context) throws IOException, InterruptedException {
 
         return new StudentRecordWriter(context);
     }
@@ -29,7 +29,7 @@ public class StudentOutputFormat extends FileOutputFormat<StudentWritable, NullW
     /**
      * 实现将Reducer输出K,V写出
      */
-    static class StudentRecordWriter extends RecordWriter<StudentWritable, NullWritable> {
+    static class StudentRecordWriter extends RecordWriter<ScoreWritable, NullWritable> {
         FSDataOutputStream passOs;
         FSDataOutputStream failOs;
 
@@ -50,7 +50,7 @@ public class StudentOutputFormat extends FileOutputFormat<StudentWritable, NullW
          * @throws InterruptedException
          */
         @Override
-        public void write(StudentWritable key, NullWritable value) throws IOException, InterruptedException {
+        public void write(ScoreWritable key, NullWritable value) throws IOException, InterruptedException {
             int score = key.getScore();
             if (score >= 80) {
 //                passOs.writeBytes(score + "\n");

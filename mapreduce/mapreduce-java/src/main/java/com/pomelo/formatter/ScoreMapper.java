@@ -1,6 +1,6 @@
 package com.pomelo.formatter;
 
-import com.pomelo.formatter.writable.StudentWritable;
+import com.pomelo.formatter.writable.ScoreWritable;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -14,13 +14,13 @@ import java.io.IOException;
  * create by: zhaosong 2024/12/17
  * version: 1.0
  */
-public class StudentMapper extends Mapper<LongWritable, Text, StudentWritable, Text> {
+public class ScoreMapper extends Mapper<LongWritable, Text, ScoreWritable, Text> {
 
-    StudentWritable outputKey = new StudentWritable();
+    ScoreWritable outputKey = new ScoreWritable();
 
     @Override
     protected void map(LongWritable key, Text value
-            , Mapper<LongWritable, Text, StudentWritable, Text>.Context context) throws IOException, InterruptedException {
+            , Mapper<LongWritable, Text, ScoreWritable, Text>.Context context) throws IOException, InterruptedException {
         // 行数据
         String line = value.toString();
         String[] words = StringUtils.split(line, ",");

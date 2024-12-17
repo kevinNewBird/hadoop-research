@@ -15,9 +15,9 @@ import java.io.IOException;
  * create by: zhaosong 2024/12/17
  * version: 1.0
  */
-public class StudentWritable implements Writable, WritableComparable<StudentWritable> {
+public class ScoreWritable implements Writable, WritableComparable<ScoreWritable> {
 
-    public StudentWritable() {
+    public ScoreWritable() {
         // 空构造
     }
 
@@ -43,7 +43,7 @@ public class StudentWritable implements Writable, WritableComparable<StudentWrit
     }
 
     @Override
-    public int compareTo(StudentWritable other) {
+    public int compareTo(ScoreWritable other) {
         return this.score.compareTo(other.score);
     }
 
