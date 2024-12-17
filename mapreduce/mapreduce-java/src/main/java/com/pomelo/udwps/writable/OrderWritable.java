@@ -1,4 +1,4 @@
-package com.pomelo.udps.writable;
+package com.pomelo.udwps.writable;
 
 import lombok.Getter;
 import lombok.Setter;

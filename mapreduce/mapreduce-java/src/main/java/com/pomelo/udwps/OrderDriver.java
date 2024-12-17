@@ -1,7 +1,7 @@
-package com.pomelo.udps;
+package com.pomelo.udwps;
 
-import com.pomelo.udps.partitioner.OrderPartitioner;
-import com.pomelo.udps.writable.OrderWritable;
+import com.pomelo.udwps.partitioner.OrderPartitioner;
+import com.pomelo.udwps.writable.OrderWritable;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;

@@ -1,6 +1,6 @@
-package com.pomelo.udps;
+package com.pomelo.udwps;
 
-import com.pomelo.udps.writable.OrderWritable;
+import com.pomelo.udwps.writable.OrderWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 
