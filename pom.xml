@@ -10,6 +10,7 @@
         <module>hdfs</module>
         <module>common-base</module>
         <module>mapreduce</module>
+        <module>flink</module>
     </modules>
 
     <parent>
@@ -27,6 +28,9 @@
         <project.encoding>utf-8</project.encoding>
         <spring-boot.version>2.6.6</spring-boot.version>
         <hadoop.version>3.3.6</hadoop.version>
+        <flink.version>1.16.0</flink.version>
+        <scala.version>2.12.10</scala.version>
+        <scala.binary.version>2.12</scala.binary.version>
     </properties>
 
     <dependencyManagement>

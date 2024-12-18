@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.pomelo</groupId>
+        <artifactId>hadoop-research</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <artifactId>flink</artifactId>
+    <packaging>pom</packaging>
+
+    <name>flink</name>
+    <url>http://maven.apache.org</url>
+    <modules>
+        <module>flink-java</module>
+        <module>flink-scala</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-client</artifactId>
+                <version>${hadoop.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-reload4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!--flink java侧引入依赖(scala也需要引入该依赖)-->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-clients</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <!--flink scala侧引入依赖-->
+            <!-- Flink批和流开发依赖包 -->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-scala_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-streaming-scala_${scala.binary.version}</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.apache.flink</groupId>-->
+<!--                <artifactId>flink-clients</artifactId>-->
+<!--                <version>${flink.version}</version>-->
+<!--            </dependency>-->
+
+            <!-- Scala包 -->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-compiler</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-reflect</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.pomelo</groupId>
+            <artifactId>common-base</artifactId>
+        </dependency>
+    </dependencies>
+</project>
