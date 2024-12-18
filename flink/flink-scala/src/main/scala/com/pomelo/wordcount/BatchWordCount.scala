@@ -22,14 +22,17 @@ object BatchWordCount {
     //3.读取数据文件
     val linesDS: DataSet[String] = env.readTextFile("./data/words.txt")
 
-    //4.进行 WordCount 统计并打印
-    linesDS.flatMap(line => {
-        line.split(" ")
-      })
-      .map((_, 1))
+    //4.切分单词
+    val wordsDs: DataSet[String] = linesDS.flatMap(line => {
+      line.split(" ")
+    })
+
+    // 5.对数据进行计数、分组、聚合统计
+    wordsDs.map(word=>{(word, 1)})
       .groupBy(0)
       .sum(1)
       .print()
+
   }
 
 }
