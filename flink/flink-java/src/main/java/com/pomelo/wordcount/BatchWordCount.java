@@ -27,6 +27,12 @@ import java.util.Arrays;
  */
 public class BatchWordCount {
 
+    /**
+     * TIP：使用的是DataSet的处理方式，而不是采用流式处理的批模式
+     * 在1.12以后DataSet模式已经被软弃用，不再推荐使用。批数据的处理推荐食用流式处理的批模式（即DataStream）
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         // 1.准备flink的本地运行环境（还有更多的其他的运行环境）
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
