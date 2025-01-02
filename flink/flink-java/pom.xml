@@ -19,6 +19,12 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-clients</artifactId>
         </dependency>
+        <!--开启本地webui，引入的依赖-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-runtime-web</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
