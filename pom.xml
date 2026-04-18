@@ -11,6 +11,7 @@
         <module>common-base</module>
         <module>mapreduce</module>
         <module>flink</module>
+        <module>flink-cdc</module>
     </modules>
 
     <parent>
@@ -31,6 +32,7 @@
         <flink.version>1.16.0</flink.version>
         <scala.version>2.12.10</scala.version>
         <scala.binary.version>2.12</scala.binary.version>
+        <mysql.cdc.version>2.4.1</mysql.cdc.version>
     </properties>
 
     <dependencyManagement>

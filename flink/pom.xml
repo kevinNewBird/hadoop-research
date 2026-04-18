@@ -30,6 +30,54 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!--(!!!) table所需要依赖-->
+            <!--TablAPI 和SQL集成在同一套API中，这套API的核心概念是Table，用作查询的输入和输出
+            ，所有批处理和流处理的Table API和SQL程序都遵循相同的模型-->
+            <!--java/scala语言的共同需要的基础依赖：
+            1.flink table运行环境所需依赖包-flink-table-runtime
+            2.flink table planner依赖包-flink-table-planner-loader
+            -->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-table-runtime</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-table-planner-loader</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <!--table api和sql依赖-除公共依赖包外，java api还需要引入如下依赖：
+            1.Table API 依赖包-flink-table-api-java
+            2.Table API + DataStream 所需依赖包-flink-table-api-java-bridge
+            -->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-table-api-java</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-table-api-java-bridge</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <!--(!!!) flink source-->
+            <!--DataSources模块定义了DataStream API 中数据输入操作，Flink中内置了很多数据源Source，
+            例如：文件数据源、Socket数据源、集合数据源,同时也支持第三方数据源，
+            例如：Kafka数据源、自定义数据源，
+            下面主要为使用DataStream API的相关依赖-->
+            <!--i. Datastream files connector。 早先读取文本文本数据使用env.readTextFile(filePath)方法来实现 -->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-files</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+            <!--2.flink kafka datstream source: 在实时处理场景中Flink读取kafka中的数据是最常见的场景，Flink在操作Kafka时天生支持容错、数据精准消费一次，所以Flink与Kafk是一对“黄金搭档”-->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-kafka</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
             <!--flink java侧引入依赖(scala也需要引入该依赖)-->
             <dependency>
                 <groupId>org.apache.flink</groupId>
@@ -53,7 +101,23 @@
 <!--                <artifactId>flink-clients</artifactId>-->
 <!--                <version>${flink.version}</version>-->
 <!--            </dependency>-->
-
+            <!--redis cdc-->
+<!--            <dependency>-->
+<!--                <groupId>org.apache.bahir</groupId>-->
+<!--                <artifactId>flink-connector-redis_2.12</artifactId>-->
+<!--                <version>${flink-connector-redis.version}</version>-->
+<!--                &lt;!&ndash; 该依赖与Flink Table 依赖冲突，排除该依赖 &ndash;&gt;-->
+<!--                <exclusions>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>org.apache.flink</groupId>-->
+<!--                        <artifactId>flink-table-api-java-bridge_2.12</artifactId>-->
+<!--                    </exclusion>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>org.apache.flink</groupId>-->
+<!--                        <artifactId>flink-table-api-java</artifactId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
+<!--            </dependency>-->
             <!-- Scala包 -->
             <dependency>
                 <groupId>org.scala-lang</groupId>

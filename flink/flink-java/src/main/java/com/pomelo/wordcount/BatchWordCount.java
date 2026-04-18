@@ -35,6 +35,7 @@ public class BatchWordCount {
      */
     public static void main(String[] args) throws Exception {
         // 1.准备flink的本地运行环境（还有更多的其他的运行环境）
+        // 注意：设置Flink运行环境，如果在本地启动则创建本地环境，如果是在集群中启动，则创建集群环境
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
         // 2.读取文件数据 (一行一行的数据)
