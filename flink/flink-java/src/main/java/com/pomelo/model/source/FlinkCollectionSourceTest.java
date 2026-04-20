@@ -1,4 +1,4 @@
-package com.pomelo.source;
+package com.pomelo.model.source;
 
 import lombok.*;
 import org.apache.flink.api.java.ExecutionEnvironment;

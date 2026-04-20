@@ -1,4 +1,4 @@
-package com.pomelo.serialize.kryo;
+package com.pomelo.model.serialize.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;

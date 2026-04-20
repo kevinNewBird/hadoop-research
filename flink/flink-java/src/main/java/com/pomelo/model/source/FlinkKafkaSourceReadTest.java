@@ -1,4 +1,4 @@
-package com.pomelo.source;
+package com.pomelo.model.source;
 
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.typeinfo.TypeHint;

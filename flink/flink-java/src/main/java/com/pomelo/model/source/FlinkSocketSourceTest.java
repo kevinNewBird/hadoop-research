@@ -1,4 +1,4 @@
-package com.pomelo.source;
+package com.pomelo.model.source;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.functions.FlatMapFunction;

@@ -1,4 +1,4 @@
-package com.pomelo.serialize.base;
+package com.pomelo.model.serialize.base;
 
 import lombok.Builder;
 import lombok.Getter;

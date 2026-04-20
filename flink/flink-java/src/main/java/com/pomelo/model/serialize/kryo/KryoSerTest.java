@@ -1,4 +1,4 @@
-package com.pomelo.serialize.kryo;
+package com.pomelo.model.serialize.kryo;
 
 import com.pomelo.serialize.base.Student;
 import org.apache.commons.lang3.StringUtils;
