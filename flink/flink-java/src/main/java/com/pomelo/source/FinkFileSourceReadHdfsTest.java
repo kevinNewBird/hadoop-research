@@ -6,7 +6,6 @@ import org.apache.flink.connector.file.src.reader.TextLineInputFormat;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.PathOperationException;
@@ -17,7 +16,7 @@ import java.net.URI;
 /**
  *
  */
-public class FinkFileConnectorReadHdfsTest {
+public class FinkFileSourceReadHdfsTest {
 
     private static final String HA_HDFS_URL = "hdfs://mycluster";
 
@@ -27,6 +26,12 @@ public class FinkFileConnectorReadHdfsTest {
 
     private static final String HDFS_DATA_FILE_PATH = HA_HDFS_URL + DATA_DIR + DATA_FILE;
 
+    /**
+     * 用途：读取文件数据（本地文件或者hdfs）
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         // 1.准备数据
         createFileWithHdfs();
@@ -68,7 +73,7 @@ public class FinkFileConnectorReadHdfsTest {
         }
 
         // 4.上传本地数据到hdfs
-        Path localDataPath = new Path(FinkFileConnectorReadHdfsTest.class.getClassLoader().getResource("flink-java.txt").getFile().toString());
+        Path localDataPath = new Path(FinkFileSourceReadHdfsTest.class.getClassLoader().getResource("flink-java.txt").getFile().toString());
         Path remoteDatePath = new Path(DATA_DIR, "flink-java.txt");
         if (fs.exists(remoteDatePath)) {
             fs.delete(remoteDatePath, true);
