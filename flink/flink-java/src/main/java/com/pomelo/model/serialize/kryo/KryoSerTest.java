@@ -1,6 +1,6 @@
 package com.pomelo.model.serialize.kryo;
 
-import com.pomelo.serialize.base.Student;
+import com.pomelo.model.serialize.base.Student;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.MapFunction;

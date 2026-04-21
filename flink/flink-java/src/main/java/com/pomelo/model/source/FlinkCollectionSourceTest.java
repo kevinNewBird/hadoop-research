@@ -43,7 +43,7 @@ public class FlinkCollectionSourceTest {
     @NoArgsConstructor
     @AllArgsConstructor
     @ToString
-    private static class StationLog{
+    public static class StationLog{
         public String sid;
         public String callOut;
         public String callIn;

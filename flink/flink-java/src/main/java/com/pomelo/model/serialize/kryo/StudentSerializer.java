@@ -4,7 +4,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.pomelo.serialize.base.Student;
+import com.pomelo.model.serialize.base.Student;
 
 /**
  * Flink提供了多种序列化器，包括Kryo、Avro和Java序列化器等，大多数情况下，用户不用担心flink的序列化框架，
